@@ -2,8 +2,8 @@ const { app, BrowserWindow } = require('electron')
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 915,
-    height: 260,
+    width: 1500,
+    height: 300,
     autoHideMenuBar: true,
     minimizable: false,
     maximizable: false,
@@ -15,7 +15,7 @@ function createWindow () {
   win.loadFile('./app/index.html');
 
   // Open the DevTools.
-  //win.webContents.openDevTools();
+  win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow)

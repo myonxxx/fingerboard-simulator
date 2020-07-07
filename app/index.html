@@ -7,90 +7,96 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<section class="fingerboard">
+    <div class="scale-selector">
+        <select>
+            <option>Please choose a scale</option>
+            <option value="C-Am">C/Am</option>
+        </select>
+    </div>
+    <div class="fingerboard">
     <div class="first-string">
-        <button data-sound="E3" class="one-flet key">E</button>
-        <button data-sound="F3" class="key">F</button>
-        <button data-sound="G3b" class="key">F#/Gb</button>
-        <button data-sound="G3" class="key">G</button>
-        <button data-sound="A3b" class="key">G#/Ab</button>
-        <button data-sound="A3" class="key">A</button>
-        <button data-sound="B3b" class="key">A#/Bb</button>
-        <button data-sound="B3" class="key">B</button>
-        <button data-sound="C4" class="key">C</button>
-        <button data-sound="D4b" class="key">C#/Db</button>
-        <button data-sound="D4" class="key">D</button>
-        <button data-sound="E4b" class="key">D#/Eb</button>
+        <button data-sound="E3"  class="open E key">E</button>
+        <button data-sound="F3"  class="F key">F</button>
+        <button data-sound="G3b" class="Gb key">F#/Gb</button>
+        <button data-sound="G3"  class="G key">G</button>
+        <button data-sound="A3b" class="Ab key">G#/Ab</button>
+        <button data-sound="A3"  class="A key">A</button>
+        <button data-sound="B3b" class="Bb key">A#/Bb</button>
+        <button data-sound="B3"  class="B key">B</button>
+        <button data-sound="C4"  class="C key">C</button>
+        <button data-sound="D4b" class="Db key">C#/Db</button>
+        <button data-sound="D4"  class="D key">D</button>
+        <button data-sound="E4b" class="Eb key">D#/Eb</button>
     </div>
     <div class="second-string">
-        <button data-sound="B2" class="one-flet key">B</button>
-        <button data-sound="C3" class="key">C</button>
-        <button data-sound="D3b" class="key">C#/Db</button>
-        <button data-sound="D3" class="key">D</button>
-        <button data-sound="E3b" class="key">D#/Eb</button>
-        <button data-sound="E3" class="key">E</button>
-        <button data-sound="F3" class="key">F</button>
-        <button data-sound="G3b" class="key">F#/Gb</button>
-        <button data-sound="G3" class="key">G</button>
-        <button data-sound="A3b" class="key">G#/Ab</button>
-        <button data-sound="A3" class="key">A</button>
-        <button data-sound="B3b" class="key">A#/Bb</button>
+        <button data-sound="B2" class="open B key">B</button>
+        <button data-sound="C3" class="C key">C</button>
+        <button data-sound="D3b" class="Db key">C#/Db</button>
+        <button data-sound="D3" class="D key">D</button>
+        <button data-sound="E3b" class="Eb key">D#/Eb</button>
+        <button data-sound="E3" class="E key">E</button>
+        <button data-sound="F3" class="F key">F</button>
+        <button data-sound="G3b" class="Gb key">F#/Gb</button>
+        <button data-sound="G3" class="G key">G</button>
+        <button data-sound="A3b" class="Ab key">G#/Ab</button>
+        <button data-sound="A3" class="A key">A</button>
+        <button data-sound="B3b" class="Bb key">A#/Bb</button>
     </div>
     <div class="third-string">
-        <button data-sound="G2" class="one-flet key">G</button>
-        <button data-sound="A2b" class="key">G#/Ab</button>
-        <button data-sound="A2" class="key">A</button>
-        <button data-sound="B2b" class="key">A#/Bb</button>
-        <button data-sound="B2" class="key">B</button>
-        <button data-sound="C3" class="key">C</button>
-        <button data-sound="D3b" class="key">C#/Db</button>
-        <button data-sound="D3" class="key">D</button>
-        <button data-sound="E3b" class="key">D#/Eb</button>
-        <button data-sound="E3" class="key">E</button>
-        <button data-sound="F3" class="key">F</button>
-        <button data-sound="G3b" class="key">F#/Gb</button>
+        <button data-sound="G2" class="open G key">G</button>
+        <button data-sound="A2b" class="Ab key">G#/Ab</button>
+        <button data-sound="A2" class="A key">A</button>
+        <button data-sound="B2b" class="Bb key">A#/Bb</button>
+        <button data-sound="B2" class="B key">B</button>
+        <button data-sound="C3" class="C key">C</button>
+        <button data-sound="D3b" class="Db key">C#/Db</button>
+        <button data-sound="D3" class="D key">D</button>
+        <button data-sound="E3b" class="Eb key">D#/Eb</button>
+        <button data-sound="E3" class="E key">E</button>
+        <button data-sound="F3" class="F key">F</button>
+        <button data-sound="G3b" class="Gb key">F#/Gb</button>
     </div>
     <div class="fourth-string">
-        <button data-sound="D2" class="one-flet key">D</button>
-        <button data-sound="E2b" class="key">D#/Eb</button>
-        <button data-sound="E2" class="key">E</button>
-        <button data-sound="F2" class="key">F</button>
-        <button data-sound="G2b" class="key">F#/Gb</button>
-        <button data-sound="G2" class="key">G</button>
-        <button data-sound="A2b" class="key">G#/Ab</button>
-        <button data-sound="A2" class="key">A</button>
-        <button data-sound="B2b" class="key">A#/Bb</button>
-        <button data-sound="B2" class="key">B</button>
-        <button data-sound="C3" class="key">C</button>
-        <button data-sound="D3b" class="key">C#/Db</button>
+        <button data-sound="D2" class="open D key">D</button>
+        <button data-sound="E2b" class="Eb key">D#/Eb</button>
+        <button data-sound="E2" class="E key">E</button>
+        <button data-sound="F2" class="F key">F</button>
+        <button data-sound="G2b" class="Gb key">F#/Gb</button>
+        <button data-sound="G2" class="G key">G</button>
+        <button data-sound="A2b" class="Ab key">G#/Ab</button>
+        <button data-sound="A2" class="A key">A</button>
+        <button data-sound="B2b" class="Bb key">A#/Bb</button>
+        <button data-sound="B2" class="B key">B</button>
+        <button data-sound="C3" class="C key">C</button>
+        <button data-sound="D3b" class="Db key">C#/Db</button>
     </div>
     <div class="fifth-string">
-        <button data-sound="A1" class="one-flet key">A</button>
-        <button data-sound="B1b" class="key">A#/Bb</button>
-        <button data-sound="B1" class="key">B</button>
-        <button data-sound="C2" class="key">C</button>
-        <button data-sound="D2b" class="key">C#/Db</button>
-        <button data-sound="D2" class="key">D</button>
-        <button data-sound="E2b" class="key">D#/Eb</button>
-        <button data-sound="E2" class="key">E</button>
-        <button data-sound="F2" class="key">F</button>
-        <button data-sound="G2b" class="key">F#/Gb</button>
-        <button data-sound="G2" class="key">G</button>
-        <button data-sound="A2b" class="key">G#/Ab</button>
+        <button data-sound="A1" class="open A key">A</button>
+        <button data-sound="B1b" class="Bb key">A#/Bb</button>
+        <button data-sound="B1" class="B key">B</button>
+        <button data-sound="C2" class="C key">C</button>
+        <button data-sound="D2b" class="Db key">C#/Db</button>
+        <button data-sound="D2" class="D key">D</button>
+        <button data-sound="E2b" class="Eb key">D#/Eb</button>
+        <button data-sound="E2" class="E key">E</button>
+        <button data-sound="F2" class="F key">F</button>
+        <button data-sound="G2b" class="Gb key">F#/Gb</button>
+        <button data-sound="G2" class="G key">G</button>
+        <button data-sound="A2b" class="Ab key">G#/Ab</button>
     </div>
     <div class="sixth-string">
-        <button data-sound="E1" class="one-flet key">E</button>
-        <button data-sound="F1" class="key">F</button>
-        <button data-sound="G1b" class="key">F#/Gb</button>
-        <button data-sound="G1" class="key">G</button>
-        <button data-sound="A1b" class="key">G#/Ab</button>
-        <button data-sound="A1" class="key">A</button>
-        <button data-sound="B1b" class="key">A#/Bb</button>
-        <button data-sound="B1" class="key">B</button>
-        <button data-sound="C2" class="key">C</button>
-        <button data-sound="D2b" class="key">C#/Db</button>
-        <button data-sound="D2" class="key">D</button>
-        <button data-sound="E2b" class="key">D#/Eb</button>
+        <button data-sound="E1" class="open E key">E</button>
+        <button data-sound="F1" class="F key">F</button>
+        <button data-sound="G1b" class="Gb key">F#/Gb</button>
+        <button data-sound="G1" class="G key">G</button>
+        <button data-sound="A1b" class="Ab key">G#/Ab</button>
+        <button data-sound="A1" class="A key">A</button>
+        <button data-sound="B1b" class="Bb key">A#/Bb</button>
+        <button data-sound="B1" class="B key">B</button>
+        <button data-sound="C2" class="C key">C</button>
+        <button data-sound="D2b" class="Db key">C#/Db</button>
+        <button data-sound="D2" class="D key">D</button>
+        <button data-sound="E2b" class="Eb key">D#/Eb</button>
     </div>
     <audio id="C1"  src="sounds/C1.mp3" ></audio>
     <audio id="D1b" src="sounds/Db1.mp3"></audio>
@@ -152,7 +158,30 @@
     <audio id="A5"  src="sounds/A5.mp3" ></audio>
     <audio id="B5b" src="sounds/Bb5.mp3"></audio>
     <audio id="B5"  src="sounds/B5.mp3" ></audio>
-</section>
+    </div>
+    <div class="stroke-zone">
+    <div><button></button></div>
+    <div><button></button></div>
+    <div><button></button></div>
+    <div><button></button></div>
+    <div><button></button></div>
+    <div><button></button></div>
+    </div>
+    <div class='flet-number'>
+    <div>0</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div id=stroke-zone-label>Stroke Zone</div>
+    </div>
 </body>
 <script>
     require('./renderer');

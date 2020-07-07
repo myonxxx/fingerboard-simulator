@@ -1,20 +1,65 @@
-.fingerboard {
-    font-size: 0px;
+body {
+  font-size: 0px;
 }
 
-button {
-  width: 70px;
+.fingerboard {
+  float: left;
+}
+
+.fingerboard button {
+  width: 60px;
+  height: 30px;
   font-size: 15px;
   background-color: rgb(181, 220, 216);
   border: none;
-  padding: 0.5em 0.5em;
+  padding: none;
   margin: 1px;
 }
+
+.fingerboard button.open {
+  background-color: rgb(109, 194, 188);
+}
+
+.fingerboard button.emphasize-scale {
+  background-color: rgb(223, 168, 117);
+}
+
+.stroke-zone {
+  float: left;
+  font-size: 0px;
+}
+
+.stroke-zone button {
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  background-color: rgb(207, 243, 237);
+  border: none;
+  margin: 1px;
+}
+
 
 button:hover {
     background-color: rgb(156, 198, 192);
 }
 
-.one-flet {
-  background-color: rgb(109, 194, 188);
+.flet-number {
+  display: flex;
+  clear: both;
 }
+
+.flet-number div{
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 15px;
+  padding: none;
+  background-color: rgb(221, 235, 233);
+  margin: 1px;
+}
+
+#stroke-zone-label {
+  width: 120px;
+}
+
