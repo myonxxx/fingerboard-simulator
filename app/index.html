@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finger Board</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<section class="fingerboard">
+    <div class="first-string">
+        <button data-sound="E3" class="one-flet key">E</button>
+        <button data-sound="F3" class="key">F</button>
+        <button data-sound="G3b" class="key">F#/Gb</button>
+        <button data-sound="G3" class="key">G</button>
+        <button data-sound="A3b" class="key">G#/Ab</button>
+        <button data-sound="A3" class="key">A</button>
+        <button data-sound="B3b" class="key">A#/Bb</button>
+        <button data-sound="B3" class="key">B</button>
+        <button data-sound="C4" class="key">C</button>
+        <button data-sound="D4b" class="key">C#/Db</button>
+        <button data-sound="D4" class="key">D</button>
+        <button data-sound="E4b" class="key">D#/Eb</button>
+    </div>
+    <div class="second-string">
+        <button data-sound="B2" class="one-flet key">B</button>
+        <button data-sound="C3" class="key">C</button>
+        <button data-sound="D3b" class="key">C#/Db</button>
+        <button data-sound="D3" class="key">D</button>
+        <button data-sound="E3b" class="key">D#/Eb</button>
+        <button data-sound="E3" class="key">E</button>
+        <button data-sound="F3" class="key">F</button>
+        <button data-sound="G3b" class="key">F#/Gb</button>
+        <button data-sound="G3" class="key">G</button>
+        <button data-sound="A3b" class="key">G#/Ab</button>
+        <button data-sound="A3" class="key">A</button>
+        <button data-sound="B3b" class="key">A#/Bb</button>
+    </div>
+    <div class="third-string">
+        <button data-sound="G2" class="one-flet key">G</button>
+        <button data-sound="A2b" class="key">G#/Ab</button>
+        <button data-sound="A2" class="key">A</button>
+        <button data-sound="B2b" class="key">A#/Bb</button>
+        <button data-sound="B2" class="key">B</button>
+        <button data-sound="C3" class="key">C</button>
+        <button data-sound="D3b" class="key">C#/Db</button>
+        <button data-sound="D3" class="key">D</button>
+        <button data-sound="E3b" class="key">D#/Eb</button>
+        <button data-sound="E3" class="key">E</button>
+        <button data-sound="F3" class="key">F</button>
+        <button data-sound="G3b" class="key">F#/Gb</button>
+    </div>
+    <div class="fourth-string">
+        <button data-sound="D2" class="one-flet key">D</button>
+        <button data-sound="E2b" class="key">D#/Eb</button>
+        <button data-sound="E2" class="key">E</button>
+        <button data-sound="F2" class="key">F</button>
+        <button data-sound="G2b" class="key">F#/Gb</button>
+        <button data-sound="G2" class="key">G</button>
+        <button data-sound="A2b" class="key">G#/Ab</button>
+        <button data-sound="A2" class="key">A</button>
+        <button data-sound="B2b" class="key">A#/Bb</button>
+        <button data-sound="B2" class="key">B</button>
+        <button data-sound="C3" class="key">C</button>
+        <button data-sound="D3b" class="key">C#/Db</button>
+    </div>
+    <div class="fifth-string">
+        <button data-sound="A1" class="one-flet key">A</button>
+        <button data-sound="B1b" class="key">A#/Bb</button>
+        <button data-sound="B1" class="key">B</button>
+        <button data-sound="C2" class="key">C</button>
+        <button data-sound="D2b" class="key">C#/Db</button>
+        <button data-sound="D2" class="key">D</button>
+        <button data-sound="E2b" class="key">D#/Eb</button>
+        <button data-sound="E2" class="key">E</button>
+        <button data-sound="F2" class="key">F</button>
+        <button data-sound="G2b" class="key">F#/Gb</button>
+        <button data-sound="G2" class="key">G</button>
+        <button data-sound="A2b" class="key">G#/Ab</button>
+    </div>
+    <div class="sixth-string">
+        <button data-sound="E1" class="one-flet key">E</button>
+        <button data-sound="F1" class="key">F</button>
+        <button data-sound="G1b" class="key">F#/Gb</button>
+        <button data-sound="G1" class="key">G</button>
+        <button data-sound="A1b" class="key">G#/Ab</button>
+        <button data-sound="A1" class="key">A</button>
+        <button data-sound="B1b" class="key">A#/Bb</button>
+        <button data-sound="B1" class="key">B</button>
+        <button data-sound="C2" class="key">C</button>
+        <button data-sound="D2b" class="key">C#/Db</button>
+        <button data-sound="D2" class="key">D</button>
+        <button data-sound="E2b" class="key">D#/Eb</button>
+    </div>
+    <audio id="C1"  src="sounds/C1.mp3" ></audio>
+    <audio id="D1b" src="sounds/Db1.mp3"></audio>
+    <audio id="D1"  src="sounds/D1.mp3" ></audio>
+    <audio id="E1b" src="sounds/Eb1.mp3"></audio>
+    <audio id="E1"  src="sounds/E1.mp3" ></audio>
+    <audio id="F1"  src="sounds/F1.mp3" ></audio>
+    <audio id="G1b" src="sounds/Gb1.mp3"></audio>
+    <audio id="G1"  src="sounds/G1.mp3" ></audio>
+    <audio id="A1b" src="sounds/Ab1.mp3"></audio>
+    <audio id="A1"  src="sounds/A1.mp3" ></audio>
+    <audio id="B1b" src="sounds/Bb1.mp3"></audio>
+    <audio id="B1"  src="sounds/B1.mp3" ></audio>
+    <audio id="C2"  src="sounds/C2.mp3" ></audio>
+    <audio id="D2b" src="sounds/Db2.mp3"></audio>
+    <audio id="D2"  src="sounds/D2.mp3" ></audio>
+    <audio id="E2b" src="sounds/Eb2.mp3"></audio>
+    <audio id="E2"  src="sounds/E2.mp3" ></audio>
+    <audio id="F2"  src="sounds/F2.mp3" ></audio>
+    <audio id="G2b" src="sounds/Gb2.mp3"></audio>
+    <audio id="G2"  src="sounds/G2.mp3" ></audio>
+    <audio id="A2b" src="sounds/Ab2.mp3"></audio>
+    <audio id="A2"  src="sounds/A2.mp3" ></audio>
+    <audio id="B2b" src="sounds/Bb2.mp3"></audio>
+    <audio id="B2"  src="sounds/B2.mp3" ></audio>
+    <audio id="C3"  src="sounds/C3.mp3" ></audio>
+    <audio id="D3b" src="sounds/Db3.mp3"></audio>
+    <audio id="D3"  src="sounds/D3.mp3" ></audio>
+    <audio id="E3b" src="sounds/Eb3.mp3"></audio>
+    <audio id="E3"  src="sounds/E3.mp3" ></audio>
+    <audio id="F3"  src="sounds/F3.mp3" ></audio>
+    <audio id="G3b" src="sounds/Gb3.mp3"></audio>
+    <audio id="G3"  src="sounds/G3.mp3" ></audio>
+    <audio id="A3b" src="sounds/Ab3.mp3"></audio>
+    <audio id="A3"  src="sounds/A3.mp3" ></audio>
+    <audio id="B3b" src="sounds/Bb3.mp3"></audio>
+    <audio id="B3"  src="sounds/B3.mp3" ></audio>
+    <audio id="C4"  src="sounds/C4.mp3" ></audio>
+    <audio id="D4b" src="sounds/Db4.mp3"></audio>
+    <audio id="D4"  src="sounds/D4.mp3" ></audio>
+    <audio id="E4b" src="sounds/Eb4.mp3"></audio>
+    <audio id="E4"  src="sounds/E4.mp3" ></audio>
+    <audio id="F4"  src="sounds/F4.mp3" ></audio>
+    <audio id="G4b" src="sounds/Gb4.mp3"></audio>
+    <audio id="G4"  src="sounds/G4.mp3" ></audio>
+    <audio id="A4b" src="sounds/Ab4.mp3"></audio>
+    <audio id="A4"  src="sounds/A4.mp3" ></audio>
+    <audio id="B4b" src="sounds/Bb4.mp3"></audio>
+    <audio id="B4"  src="sounds/B4.mp3" ></audio>
+    <audio id="C5"  src="sounds/C5.mp3" ></audio>
+    <audio id="D5b" src="sounds/Db5.mp3"></audio>
+    <audio id="D5"  src="sounds/D5.mp3" ></audio>
+    <audio id="E5b" src="sounds/Eb5.mp3"></audio>
+    <audio id="E5"  src="sounds/E5.mp3" ></audio>
+    <audio id="F5"  src="sounds/F5.mp3" ></audio>
+    <audio id="G5b" src="sounds/Gb5.mp3"></audio>
+    <audio id="G5"  src="sounds/G5.mp3" ></audio>
+    <audio id="A5b" src="sounds/Ab5.mp3"></audio>
+    <audio id="A5"  src="sounds/A5.mp3" ></audio>
+    <audio id="B5b" src="sounds/Bb5.mp3"></audio>
+    <audio id="B5"  src="sounds/B5.mp3" ></audio>
+</section>
+</body>
+<script>
+    require('./renderer');
+</script>
+</html>

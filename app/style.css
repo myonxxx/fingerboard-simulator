@@ -1,0 +1,20 @@
+.fingerboard {
+    font-size: 0px;
+}
+
+button {
+  width: 70px;
+  font-size: 15px;
+  background-color: rgb(181, 220, 216);
+  border: none;
+  padding: 0.5em 0.5em;
+  margin: 1px;
+}
+
+button:hover {
+    background-color: rgb(156, 198, 192);
+}
+
+.one-flet {
+  background-color: rgb(109, 194, 188);
+}
