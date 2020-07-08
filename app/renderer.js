@@ -1,16 +1,11 @@
 const { shell } = require('electron');
 const { PythonShell } = require('python-shell');
+var _ = require('lodash');
 
 const scaleSelector = document.querySelector('.scale-selector');
 const keys = document.querySelectorAll('.key');
 const scales = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 const CAmScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-const myEval = (convertString) => {
-  Function(convertString)();
-}
-scales.forEach(scale => {
-  myEval(`${scale}Keys = document.querySelectorAll('.${scale}')`);
-});
 
 //Error Check
 const log = require('electron-log');
@@ -26,12 +21,11 @@ keys.forEach(key => {
 });
 
 scaleSelector.addEventListener('change', (event) => {
-  console.log(event);
-  console.log(event.target.value);
-  CAmScale.forEach(note => {
-    eval(`${note}Keys.forEach(note => {
-      note.classList.add('emphasize-scale');
-    });`)
+  keys.forEach(key => {
+    console.log(_.intersection([key.classList[key.classList.length - 2]], CAmScale)[0])
+    if (_.intersection([key.classList[key.classList.length - 2]], CAmScale)[0]) {
+      key.classList.add('emphasize-scale');
+    }
   });
 });
 
