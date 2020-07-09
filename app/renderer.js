@@ -1,11 +1,21 @@
 const { shell } = require('electron');
 const { PythonShell } = require('python-shell');
-var _ = require('lodash');
 
 const scaleSelector = document.querySelector('.scale-selector');
-const keys = document.querySelectorAll('.key');
-const scales = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-const CAmScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+const notesList = document.querySelectorAll('.note');
+const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+let scaleLists = []
+notenamesList.forEach(rootNote => {
+  let rootNoteIndex = notenamesList.indexOf(rootNote);
+  scaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
+                               notenamesList[(rootNoteIndex + 2) %12],
+                               notenamesList[(rootNoteIndex + 4) %12],
+                               notenamesList[(rootNoteIndex + 5) %12],
+                               notenamesList[(rootNoteIndex + 7) %12],
+                               notenamesList[(rootNoteIndex + 9) %12],
+                               notenamesList[(rootNoteIndex + 11)%12],
+                              ];
+});
 
 //Error Check
 const log = require('electron-log');
@@ -16,21 +26,29 @@ process.on('uncaughtException', function(err) {
   app.quit();
 });
 
-keys.forEach(key => {
-  key.addEventListener('click', () => playPiano(key));
+notesList.forEach(note => {
+  note.addEventListener('click', () => playGuitar(note));
 });
 
 scaleSelector.addEventListener('change', (event) => {
-  keys.forEach(key => {
-    console.log(_.intersection([key.classList[key.classList.length - 2]], CAmScale)[0])
-    if (_.intersection([key.classList[key.classList.length - 2]], CAmScale)[0]) {
-      key.classList.add('emphasize-scale');
+  let rootNoteIndex = notenamesList.indexOf(event.target.value);
+  console.log(rootNoteIndex);
+
+  notesList.forEach(note => {
+    note.classList.remove('emphasize-scale')
+  });
+
+  notesList.forEach(note => {
+    let notenameIndex = note.classList.length - 2;
+    let notename = note.classList[notenameIndex];
+    if (scaleLists[rootNoteIndex].includes(notename)) {
+      note.classList.add('emphasize-scale');
     }
   });
 });
 
-const playPiano = (key) => {
-  const audio = document.getElementById(key.dataset.sound);
+const playGuitar = (note) => {
+  const audio = document.getElementById(note.dataset.sound);
   audio.currentTime = 0;
   audio.play();
 };
