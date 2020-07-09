@@ -17,6 +17,7 @@ notenamesList.forEach(rootNote => {
                               ];
 });
 
+
 //Error Check
 const log = require('electron-log');
 process.on('uncaughtException', function(err) {
