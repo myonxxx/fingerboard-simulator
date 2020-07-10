@@ -1,5 +1,4 @@
 const { shell } = require('electron');
-const { PythonShell } = require('python-shell');
 
 const scaleSelector = document.querySelector('.scale-selector');
 const notesList = document.querySelectorAll('.note');
@@ -37,15 +36,23 @@ scaleSelector.addEventListener('change', (event) => {
 
   notesList.forEach(note => {
     note.classList.remove('emphasize-scale')
+    note.classList.remove('emphasize-root-note')
   });
 
-  notesList.forEach(note => {
-    let notenameIndex = note.classList.length - 2;
-    let notename = note.classList[notenameIndex];
-    if (scaleLists[rootNoteIndex].includes(notename)) {
-      note.classList.add('emphasize-scale');
-    }
-  });
+  if ((rootNoteIndex) >= 0) {
+    notesList.forEach(note => {
+      let notenameIndex = note.classList.length - 2;
+      let notename = note.classList[notenameIndex];
+
+      if (scaleLists[rootNoteIndex].includes(notename)) {
+        if (notename ==　scaleLists[rootNoteIndex][0]) {
+        note.classList.add('emphasize-root-note')
+        } else {
+        note.classList.add('emphasize-scale');
+        };
+      };
+    });
+  };
 });
 
 const playGuitar = (note) => {
