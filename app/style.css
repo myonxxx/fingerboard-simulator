@@ -7,8 +7,15 @@ button:hover {
     background-color: rgb(156, 198, 192);
 }
 
-.scale-selector select {
+.key-selector{
     width: 154px;
+    height: 30px;
+    font-size: 15px;
+    margin: 1px;
+}
+
+.scale-selector{
+    width: 122px;
     height: 30px;
     font-size: 15px;
     margin: 1px;

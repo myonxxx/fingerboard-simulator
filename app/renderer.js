@@ -1,21 +1,34 @@
 const { shell } = require('electron');
 
+const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const notesList = document.querySelectorAll('.note');
 const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-let scaleLists = []
+let majorScaleLists = []
 notenamesList.forEach(rootNote => {
   let rootNoteIndex = notenamesList.indexOf(rootNote);
-  scaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
-                               notenamesList[(rootNoteIndex + 2) %12],
-                               notenamesList[(rootNoteIndex + 4) %12],
-                               notenamesList[(rootNoteIndex + 5) %12],
-                               notenamesList[(rootNoteIndex + 7) %12],
-                               notenamesList[(rootNoteIndex + 9) %12],
-                               notenamesList[(rootNoteIndex + 11)%12],
-                              ];
+  majorScaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
+                                    notenamesList[(rootNoteIndex + 2) %12],
+                                    notenamesList[(rootNoteIndex + 4) %12],
+                                    notenamesList[(rootNoteIndex + 5) %12],
+                                    notenamesList[(rootNoteIndex + 7) %12],
+                                    notenamesList[(rootNoteIndex + 9) %12],
+                                    notenamesList[(rootNoteIndex + 11)%12],
+                                    ];
 });
-
+let minorScaleLists = []
+notenamesList.forEach(rootNote => {
+  let rootNoteIndex = notenamesList.indexOf(rootNote);
+  minorScaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
+                                    notenamesList[(rootNoteIndex + 2) %12],
+                                    notenamesList[(rootNoteIndex + 3) %12],
+                                    notenamesList[(rootNoteIndex + 5) %12],
+                                    notenamesList[(rootNoteIndex + 7) %12],
+                                    notenamesList[(rootNoteIndex + 8) %12],
+                                    notenamesList[(rootNoteIndex + 10)%12],
+                                    ];
+});
+let nowKey = '';
 
 //Error Check
 const log = require('electron-log');
@@ -30,10 +43,28 @@ notesList.forEach(note => {
   note.addEventListener('click', () => playGuitar(note));
 });
 
-scaleSelector.addEventListener('change', (event) => {
-  let rootNoteIndex = notenamesList.indexOf(event.target.value);
-  console.log(rootNoteIndex);
+keySelector.addEventListener('change', (event) => {
+  nowKey = event.target.value
+  let scale = scaleSelector.value;
+  if(scale == 'major') {
+    emphasizeScale(majorScaleLists);
+  } else {
+    emphasizeScale(minorScaleLists);
+  }
+  console.log('KeySelector.addEventListener\nscale: ' + scale);
+});
 
+scaleSelector.addEventListener('change', () => {
+  if(scaleSelector.value == 'major') {
+    emphasizeScale(majorScaleLists);
+  } else {
+    emphasizeScale(minorScaleLists);
+  }
+});
+
+const emphasizeScale = (scaleLists) => {
+  let rootNoteIndex = notenamesList.indexOf(nowKey);
+  console.log(rootNoteIndex);
   notesList.forEach(note => {
     note.classList.remove('emphasize-scale')
     note.classList.remove('emphasize-root-note')
@@ -53,7 +84,7 @@ scaleSelector.addEventListener('change', (event) => {
       };
     });
   };
-});
+};
 
 const playGuitar = (note) => {
   const audio = document.getElementById(note.dataset.sound);
