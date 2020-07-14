@@ -7,6 +7,8 @@ button:hover {
     background-color: rgb(156, 198, 192);
 }
 
+
+
 .key-selector{
     width: 154px;
     height: 30px;
@@ -33,6 +35,10 @@ button:hover {
     border: none;
     padding: none;
     margin: 1px;
+}
+
+.fingerboard button.active {
+    background-color: black;
 }
 
 .fingerboard button.open {

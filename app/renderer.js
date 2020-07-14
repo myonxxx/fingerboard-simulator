@@ -3,6 +3,12 @@ const { shell } = require('electron');
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const notesList = document.querySelectorAll('.note');
+const firstStrokeZone = document.querySelector('#first-stroke-zone')
+const secondStrokeZone = document.querySelector('#second-stroke-zone')
+const thirdStrokeZone = document.querySelector('#third-stroke-zone')
+const fourthStrokeZone = document.querySelector('#fourth-stroke-zone')
+const fifthStrokeZone = document.querySelector('#fifth-stroke-zone')
+const sixthStrokeZone = document.querySelector('#sixth-stroke-zone')
 const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 let majorScaleLists = []
 notenamesList.forEach(rootNote => {
@@ -41,6 +47,59 @@ process.on('uncaughtException', function(err) {
 
 notesList.forEach(note => {
   note.addEventListener('click', () => playGuitar(note));
+});
+
+notesList.forEach(note => {
+  note.addEventListener('click', () => {
+    let parentString = note.parentElement;
+    let sameStringNotes = parentString.querySelectorAll('.note');
+    sameStringNotes.forEach(note => {
+      note.classList.remove('active');
+    });
+    note.classList.add('active');
+  });
+});
+
+firstStrokeZone.addEventListener('mouseenter', () => {
+  let activeNote = document.querySelector('.first-string .active');
+  if(activeNote){
+    playGuitar(activeNote);
+  };
+});
+
+secondStrokeZone.addEventListener('mouseenter', () => {
+  let activeNote = document.querySelector('.second-string .active');
+  if(activeNote){
+    playGuitar(activeNote);
+  };
+});
+
+thirdStrokeZone.addEventListener('mouseenter', () => {
+  let activeNote = document.querySelector('.third-string .active');
+  if(activeNote){
+    playGuitar(activeNote);
+  };
+});
+
+fourthStrokeZone.addEventListener('mouseenter', () => {
+  let activeNote = document.querySelector('.fourth-string .active');
+  if(activeNote){
+    playGuitar(activeNote);
+  };
+});
+
+fifthStrokeZone.addEventListener('mouseenter', () => {
+  let activeNote = document.querySelector('.fifth-string .active');
+  if(activeNote){
+    playGuitar(activeNote);
+  };
+});
+
+sixthStrokeZone.addEventListener('mouseenter', () => {
+  let activeNote = document.querySelector('.sixth-string .active');
+  if(activeNote){
+    playGuitar(activeNote);
+  };
 });
 
 keySelector.addEventListener('change', (event) => {
