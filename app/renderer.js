@@ -2,13 +2,9 @@ const { shell } = require('electron');
 
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
+const modeCheckbox = document.querySelector('.mode-checkbox');
 const notesList = document.querySelectorAll('.note');
-const firstStrokeZone = document.querySelector('#first-stroke-zone')
-const secondStrokeZone = document.querySelector('#second-stroke-zone')
-const thirdStrokeZone = document.querySelector('#third-stroke-zone')
-const fourthStrokeZone = document.querySelector('#fourth-stroke-zone')
-const fifthStrokeZone = document.querySelector('#fifth-stroke-zone')
-const sixthStrokeZone = document.querySelector('#sixth-stroke-zone')
+const strokeZonesList = document.querySelectorAll('.stroke-zone');
 const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 let majorScaleLists = []
 notenamesList.forEach(rootNote => {
@@ -49,59 +45,6 @@ notesList.forEach(note => {
   note.addEventListener('click', () => playGuitar(note));
 });
 
-notesList.forEach(note => {
-  note.addEventListener('click', () => {
-    let parentString = note.parentElement;
-    let sameStringNotes = parentString.querySelectorAll('.note');
-    sameStringNotes.forEach(note => {
-      note.classList.remove('active');
-    });
-    note.classList.add('active');
-  });
-});
-
-firstStrokeZone.addEventListener('mouseenter', () => {
-  let activeNote = document.querySelector('.first-string .active');
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-});
-
-secondStrokeZone.addEventListener('mouseenter', () => {
-  let activeNote = document.querySelector('.second-string .active');
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-});
-
-thirdStrokeZone.addEventListener('mouseenter', () => {
-  let activeNote = document.querySelector('.third-string .active');
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-});
-
-fourthStrokeZone.addEventListener('mouseenter', () => {
-  let activeNote = document.querySelector('.fourth-string .active');
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-});
-
-fifthStrokeZone.addEventListener('mouseenter', () => {
-  let activeNote = document.querySelector('.fifth-string .active');
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-});
-
-sixthStrokeZone.addEventListener('mouseenter', () => {
-  let activeNote = document.querySelector('.sixth-string .active');
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-});
-
 keySelector.addEventListener('change', (event) => {
   nowKey = event.target.value
   let scale = scaleSelector.value;
@@ -118,7 +61,16 @@ scaleSelector.addEventListener('change', () => {
     emphasizeScale(majorScaleLists);
   } else {
     emphasizeScale(minorScaleLists);
-  }
+  };
+});
+
+modeCheckbox.addEventListener('change', () => {
+  //If event listeners with the same content are duplicated, the event listeners are deleted.
+  activateStrokeMode();
+  activateStrokeZone();
+  if(!modeCheckbox.checked) {
+    deephasizeNotes();
+  };
 });
 
 const emphasizeScale = (scaleLists) => {
@@ -149,4 +101,45 @@ const playGuitar = (note) => {
   const audio = document.getElementById(note.dataset.sound);
   audio.currentTime = 0;
   audio.play();
+};
+
+const activateStrokeMode = () => {
+  notesList.forEach(note => {
+    let parentString = note.parentElement;
+    let sameStringNotes = parentString.querySelectorAll('.note');
+    note.addEventListener('click', function(){emphasizeActiveNote(note, sameStringNotes)});
+  });
+};
+
+const emphasizeActiveNote = (note, sameStringNotes) => {
+  if(note.classList.contains('active')) {
+    sameStringNotes.forEach(note => {
+      note.classList.remove('active');
+    });
+  } else {
+    sameStringNotes.forEach(note => {
+      note.classList.remove('active');
+    });
+    note.classList.add('active');
+  };
+};
+
+const deephasizeNotes = () => {
+  notesList.forEach(note => {
+    note.classList.remove('active');
+  });
+};
+
+const activateStrokeZone = () => {
+  strokeZonesList.forEach(strokeZone => {
+    strokeZone.addEventListener('mouseenter', function(){playGuitarFromStrokeZone(strokeZone)});
+  });
+};
+
+const playGuitarFromStrokeZone = (strokeZone) => {
+  let stringName = strokeZone.classList[0];
+  let activeNote = document.querySelector(`.${stringName} .active`);
+  if(activeNote){
+    playGuitar(activeNote);
+  };
 };
