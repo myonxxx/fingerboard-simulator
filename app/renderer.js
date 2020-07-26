@@ -1,5 +1,10 @@
 const { shell } = require('electron');
 
+const audioContext = new AudioContext();
+const oscillator = new OscillatorNode(audioContext);
+const gain = new GainNode(audioContext);
+oscillator.connect(gain).connect(audioContext.destination);
+
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const modeCheckbox = document.querySelector('.mode-checkbox');
@@ -98,9 +103,10 @@ const emphasizeScale = (scaleLists) => {
 };
 
 const playGuitar = (note) => {
-  const audio = document.getElementById(note.dataset.sound);
-  audio.currentTime = 0;
-  audio.play();
+  noteFreq = createNoteTable();
+  setCustomWave();
+  oscillator.frequency.value = noteFreq[3]["C"]
+  oscillator.start();
 };
 
 const activateStrokeMode = () => {
@@ -143,3 +149,31 @@ const playGuitarFromStrokeZone = (strokeZone) => {
     playGuitar(activeNote);
   };
 };
+
+const createNoteTable = () => {
+  let notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+  let noteFreq = [];
+  for (let i=0; i< 9; i++) {
+    noteFreq[i] = [];
+  };
+  let initFreq = 16.351597831287414;
+
+  for (let i=0; i<9; i++) {
+    notenamesList.forEach(note => {
+      if (note == 'C' && i == 0) {
+        noteFreq[i][note] = initFreq;
+      } else {
+        noteFreq[i][note] = tmpFreq * (2 ** (1/12));
+      };
+      tmpFreq = noteFreq[i][note];
+    });
+  }
+  return noteFreq;
+};
+
+const setCustomWave = () => {
+  sineTerms = new Float32Array([0, 1, 0.68, 0.19, 0.03, 0.08]);
+  cosineTerms = new Float32Array(sineTerms.length);
+  customWaveform = audioContext.createPeriodicWave(cosineTerms, sineTerms);
+  oscillator.setPeriodicWave(customWaveform);
+}
