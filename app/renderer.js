@@ -1,9 +1,7 @@
 const { shell } = require('electron');
 
 const audioContext = new AudioContext();
-const oscillator = new OscillatorNode(audioContext);
 const gain = new GainNode(audioContext);
-oscillator.connect(gain).connect(audioContext.destination);
 
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
@@ -103,10 +101,18 @@ const emphasizeScale = (scaleLists) => {
 };
 
 const playGuitar = (note) => {
+  let oscillator = new OscillatorNode(audioContext);
+  oscillator.connect(gain).connect(audioContext.destination);
+
   noteFreq = createNoteTable();
-  setCustomWave();
-  oscillator.frequency.value = noteFreq[3]["C"]
+
+  let customWaveform = createCustomWave();
+  oscillator.setPeriodicWave(customWaveform);
+  console.log(oscillator);
+
+  oscillator.frequency.value = noteFreq[note.dataset.num][note.dataset.key];
   oscillator.start();
+  oscillator.stop(2);
 };
 
 const activateStrokeMode = () => {
@@ -171,9 +177,9 @@ const createNoteTable = () => {
   return noteFreq;
 };
 
-const setCustomWave = () => {
+const createCustomWave = () => {
   sineTerms = new Float32Array([0, 1, 0.68, 0.19, 0.03, 0.08]);
   cosineTerms = new Float32Array(sineTerms.length);
   customWaveform = audioContext.createPeriodicWave(cosineTerms, sineTerms);
-  oscillator.setPeriodicWave(customWaveform);
+  return customWaveform;
 }
