@@ -10,10 +10,11 @@
   "author": "Jo",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^9.0.5"
+    "electron": "^9.1.0"
   },
   "dependencies": {
     "electron-log": "^4.2.2",
-    "python-shell": "^2.0.1"
+    "python-shell": "^2.0.1",
+    "tone": "^14.7.39"
   }
 }

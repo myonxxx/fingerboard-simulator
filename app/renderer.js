@@ -1,12 +1,15 @@
 const { shell } = require('electron');
+const Tone = require('tone');
 
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const modeCheckbox = document.querySelector('.mode-checkbox');
 const notesList = document.querySelectorAll('.note');
 const strokeZonesList = document.querySelectorAll('.stroke-zone');
+
+const synth = new Tone.PolySynth().toMaster();
 const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-let majorScaleLists = []
+let majorScaleLists = [];
 notenamesList.forEach(rootNote => {
   let rootNoteIndex = notenamesList.indexOf(rootNote);
   majorScaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
@@ -41,10 +44,6 @@ process.on('uncaughtException', function(err) {
   app.quit();
 });
 
-notesList.forEach(note => {
-  note.addEventListener('click', () => playGuitar(note));
-});
-
 keySelector.addEventListener('change', (event) => {
   nowKey = event.target.value
   let scale = scaleSelector.value;
@@ -73,6 +72,17 @@ modeCheckbox.addEventListener('change', () => {
   };
 });
 
+const playGuitar = (event) => {
+  let dataset = event.target.dataset
+  console.log("fuck web audio");
+  synth.triggerAttackRelease(dataset["note"], "8n");
+
+};
+
+notesList.forEach(note => {
+  note.addEventListener('mousedown', playGuitar, false);
+});
+
 const emphasizeScale = (scaleLists) => {
   let rootNoteIndex = notenamesList.indexOf(nowKey);
   console.log(rootNoteIndex);
@@ -95,12 +105,6 @@ const emphasizeScale = (scaleLists) => {
       };
     });
   };
-};
-
-const playGuitar = (note) => {
-  const audio = document.getElementById(note.dataset.sound);
-  audio.currentTime = 0;
-  audio.play();
 };
 
 const activateStrokeMode = () => {
@@ -139,7 +143,8 @@ const activateStrokeZone = () => {
 const playGuitarFromStrokeZone = (strokeZone) => {
   let stringName = strokeZone.classList[0];
   let activeNote = document.querySelector(`.${stringName} .active`);
-  if(activeNote){
-    playGuitar(activeNote);
-  };
+  if (activeNote) {
+    let dataset = activeNote.dataset
+    synth.triggerAttackRelease(dataset["note"], "8n");
+  }
 };
