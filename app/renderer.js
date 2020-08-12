@@ -1,15 +1,15 @@
 const { shell } = require('electron');
-
-const audioContext = new AudioContext();
-const gain = new GainNode(audioContext);
+const Tone = require('tone');
 
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const modeCheckbox = document.querySelector('.mode-checkbox');
 const notesList = document.querySelectorAll('.note');
 const strokeZonesList = document.querySelectorAll('.stroke-zone');
+
+const synth = new Tone.PolySynth().toMaster();
 const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-let majorScaleLists = []
+let majorScaleLists = [];
 notenamesList.forEach(rootNote => {
   let rootNoteIndex = notenamesList.indexOf(rootNote);
   majorScaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
@@ -44,10 +44,6 @@ process.on('uncaughtException', function(err) {
   app.quit();
 });
 
-notesList.forEach(note => {
-  note.addEventListener('click', () => playGuitar(note));
-});
-
 keySelector.addEventListener('change', (event) => {
   nowKey = event.target.value
   let scale = scaleSelector.value;
@@ -76,6 +72,17 @@ modeCheckbox.addEventListener('change', () => {
   };
 });
 
+const playGuitar = (event) => {
+  let dataset = event.target.dataset
+  console.log("fuck web audio");
+  synth.triggerAttackRelease(dataset["note"], "8n");
+
+};
+
+notesList.forEach(note => {
+  note.addEventListener('mousedown', playGuitar, false);
+});
+
 const emphasizeScale = (scaleLists) => {
   let rootNoteIndex = notenamesList.indexOf(nowKey);
   console.log(rootNoteIndex);
@@ -98,21 +105,6 @@ const emphasizeScale = (scaleLists) => {
       };
     });
   };
-};
-
-const playGuitar = (note) => {
-  let oscillator = new OscillatorNode(audioContext);
-  oscillator.connect(gain).connect(audioContext.destination);
-
-  noteFreq = createNoteTable();
-
-  let customWaveform = createCustomWave();
-  oscillator.setPeriodicWave(customWaveform);
-  console.log(oscillator);
-
-  oscillator.frequency.value = noteFreq[note.dataset.num][note.dataset.key];
-  oscillator.start();
-  oscillator.stop(2);
 };
 
 const activateStrokeMode = () => {
@@ -151,35 +143,8 @@ const activateStrokeZone = () => {
 const playGuitarFromStrokeZone = (strokeZone) => {
   let stringName = strokeZone.classList[0];
   let activeNote = document.querySelector(`.${stringName} .active`);
-  if(activeNote){
-    playGuitar(activeNote);
-  };
-};
-
-const createNoteTable = () => {
-  let notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-  let noteFreq = [];
-  for (let i=0; i< 9; i++) {
-    noteFreq[i] = [];
-  };
-  let initFreq = 16.351597831287414;
-
-  for (let i=0; i<9; i++) {
-    notenamesList.forEach(note => {
-      if (note == 'C' && i == 0) {
-        noteFreq[i][note] = initFreq;
-      } else {
-        noteFreq[i][note] = tmpFreq * (2 ** (1/12));
-      };
-      tmpFreq = noteFreq[i][note];
-    });
+  if (activeNote) {
+    let dataset = activeNote.dataset
+    synth.triggerAttackRelease(dataset["note"], "8n");
   }
-  return noteFreq;
 };
-
-const createCustomWave = () => {
-  sineTerms = new Float32Array([0, 1, 0.68, 0.19, 0.03, 0.08]);
-  cosineTerms = new Float32Array(sineTerms.length);
-  customWaveform = audioContext.createPeriodicWave(cosineTerms, sineTerms);
-  return customWaveform;
-}
