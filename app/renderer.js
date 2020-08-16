@@ -8,32 +8,6 @@ const notesList = document.querySelectorAll('.note');
 const strokeZonesList = document.querySelectorAll('.stroke-zone');
 
 const synth = new Tone.PolySynth().toMaster();
-const notenamesList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-let majorScaleLists = [];
-notenamesList.forEach(rootNote => {
-  let rootNoteIndex = notenamesList.indexOf(rootNote);
-  majorScaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
-                                    notenamesList[(rootNoteIndex + 2) %12],
-                                    notenamesList[(rootNoteIndex + 4) %12],
-                                    notenamesList[(rootNoteIndex + 5) %12],
-                                    notenamesList[(rootNoteIndex + 7) %12],
-                                    notenamesList[(rootNoteIndex + 9) %12],
-                                    notenamesList[(rootNoteIndex + 11)%12],
-                                    ];
-});
-let minorScaleLists = []
-notenamesList.forEach(rootNote => {
-  let rootNoteIndex = notenamesList.indexOf(rootNote);
-  minorScaleLists[rootNoteIndex] = [notenamesList[(rootNoteIndex)     %12],
-                                    notenamesList[(rootNoteIndex + 2) %12],
-                                    notenamesList[(rootNoteIndex + 3) %12],
-                                    notenamesList[(rootNoteIndex + 5) %12],
-                                    notenamesList[(rootNoteIndex + 7) %12],
-                                    notenamesList[(rootNoteIndex + 8) %12],
-                                    notenamesList[(rootNoteIndex + 10)%12],
-                                    ];
-});
-let nowKey = '';
 
 //Error Check
 const log = require('electron-log');
@@ -44,23 +18,12 @@ process.on('uncaughtException', function(err) {
   app.quit();
 });
 
-keySelector.addEventListener('change', (event) => {
-  nowKey = event.target.value
-  let scale = scaleSelector.value;
-  if(scale == 'major') {
-    emphasizeScale(majorScaleLists);
-  } else {
-    emphasizeScale(minorScaleLists);
-  }
-  console.log('KeySelector.addEventListener\nscale: ' + scale);
+keySelector.addEventListener('change', () => {
+  emphasizeScale();
 });
 
 scaleSelector.addEventListener('change', () => {
-  if(scaleSelector.value == 'major') {
-    emphasizeScale(majorScaleLists);
-  } else {
-    emphasizeScale(minorScaleLists);
-  };
+  emphasizeScale();
 });
 
 modeCheckbox.addEventListener('change', () => {
@@ -74,37 +37,76 @@ modeCheckbox.addEventListener('change', () => {
 
 const playGuitar = (event) => {
   let dataset = event.target.dataset
-  console.log("fuck web audio");
-  synth.triggerAttackRelease(dataset["note"], "8n");
+  let note = dataset["note"]
+  playSound(note);
+};
 
+const playGuitarFromStrokeZone = (strokeZone) => {
+  let stringName = strokeZone.classList[0];
+  let activeNote = document.querySelector(`.${stringName} .active`);
+  if (activeNote) {
+    let dataset = activeNote.dataset
+    let note = dataset["note"]
+    playSound(note);
+  }
+};
+
+const playSound = (note) => {
+  synth.triggerAttackRelease(note, '8n');
 };
 
 notesList.forEach(note => {
   note.addEventListener('mousedown', playGuitar, false);
 });
 
-const emphasizeScale = (scaleLists) => {
-  let rootNoteIndex = notenamesList.indexOf(nowKey);
-  console.log(rootNoteIndex);
-  notesList.forEach(note => {
-    note.classList.remove('emphasize-scale')
-    note.classList.remove('emphasize-root-note')
-  });
+const emphasizeScale = () => {
+  let nowKey = keySelector.value;
+  let nowScale = scaleSelector.value;
+  let notesnameList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+  let nowKeyIndex = notesnameList.indexOf(nowKey);
+  let scale = [];
+  if (nowScale == 'major') {
+    scale = [notesnameList[(nowKeyIndex)     %12],
+             notesnameList[(nowKeyIndex + 2) %12],
+             notesnameList[(nowKeyIndex + 4) %12],
+             notesnameList[(nowKeyIndex + 5) %12],
+             notesnameList[(nowKeyIndex + 7) %12],
+             notesnameList[(nowKeyIndex + 9) %12],
+             notesnameList[(nowKeyIndex + 11)%12],
+            ];
 
-  if ((rootNoteIndex) >= 0) {
-    notesList.forEach(note => {
-      let notenameIndex = note.classList.length - 2;
-      let notename = note.classList[notenameIndex];
+  } else {
+    scale = [notesnameList[(nowKeyIndex)     %12],
+             notesnameList[(nowKeyIndex + 2) %12],
+             notesnameList[(nowKeyIndex + 3) %12],
+             notesnameList[(nowKeyIndex + 5) %12],
+             notesnameList[(nowKeyIndex + 7) %12],
+             notesnameList[(nowKeyIndex + 8) %12],
+             notesnameList[(nowKeyIndex + 10)%12],
+           ];
+  };
 
-      if (scaleLists[rootNoteIndex].includes(notename)) {
-        if (notename ==　scaleLists[rootNoteIndex][0]) {
-        note.classList.add('emphasize-root-note')
-        } else {
-        note.classList.add('emphasize-scale');
+  deephasizeNotes()
+
+  if (nowKey != 'none') {
+    scale.forEach(emphasizeNote => {
+      notesList.forEach(note => {
+        if (nowKey == note.dataset["simpleNote"]) {
+          note.classList.add('emphasize-root-note');
+        } else if (emphasizeNote == note.dataset["simpleNote"]) {
+          note.classList.add('emphasize-scale');
         };
-      };
+      });
     });
   };
+}
+
+const deephasizeNotes = () => {
+  notesList.forEach(note => {
+    note.classList.remove('active');
+    note.classList.remove('emphasize-scale');
+    note.classList.remove('emphasize-root-note');
+  });
 };
 
 const activateStrokeMode = () => {
@@ -128,23 +130,9 @@ const emphasizeActiveNote = (note, sameStringNotes) => {
   };
 };
 
-const deephasizeNotes = () => {
-  notesList.forEach(note => {
-    note.classList.remove('active');
-  });
-};
-
 const activateStrokeZone = () => {
   strokeZonesList.forEach(strokeZone => {
     strokeZone.addEventListener('mouseenter', function(){playGuitarFromStrokeZone(strokeZone)});
   });
 };
 
-const playGuitarFromStrokeZone = (strokeZone) => {
-  let stringName = strokeZone.classList[0];
-  let activeNote = document.querySelector(`.${stringName} .active`);
-  if (activeNote) {
-    let dataset = activeNote.dataset
-    synth.triggerAttackRelease(dataset["note"], "8n");
-  }
-};
