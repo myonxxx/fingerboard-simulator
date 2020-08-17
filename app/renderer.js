@@ -4,7 +4,7 @@ const Tone = require('tone');
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const modeCheckbox = document.querySelector('.mode-checkbox');
-const notesList = document.querySelectorAll('.note');
+const notesList = document.querySelectorAll('div.key');
 const strokeZonesList = document.querySelectorAll('.stroke-zone');
 
 const synth = new Tone.PolySynth().toMaster();
@@ -36,27 +36,32 @@ modeCheckbox.addEventListener('change', () => {
 });
 
 const playGuitar = (event) => {
-  let dataset = event.target.dataset
-  let note = dataset["note"]
-  playSound(note);
+  let dataset = event.target.dataset;
+  let octave = dataset["octave"];
+  let note = dataset["note"];
+  let noteName = note + octave;
+  playSound(noteName);
 };
 
 const playGuitarFromStrokeZone = (strokeZone) => {
   let stringName = strokeZone.classList[0];
   let activeNote = document.querySelector(`.${stringName} .active`);
+
   if (activeNote) {
     let dataset = activeNote.dataset
+    let octave = dataset["octave"]
     let note = dataset["note"]
-    playSound(note);
+    let noteName = note + octave;
+    playSound(noteName);
   }
 };
 
-const playSound = (note) => {
-  synth.triggerAttackRelease(note, '8n');
+const playSound = (noteName) => {
+  synth.triggerAttackRelease(noteName, '8n');
 };
 
 notesList.forEach(note => {
-  note.addEventListener('mousedown', playGuitar, false);
+  note.addEventListener("mousedown", playGuitar, false);
 });
 
 const emphasizeScale = () => {
@@ -91,9 +96,9 @@ const emphasizeScale = () => {
   if (nowKey != 'none') {
     scale.forEach(emphasizeNote => {
       notesList.forEach(note => {
-        if (nowKey == note.dataset["simpleNote"]) {
+        if (nowKey == note.dataset["note"]) {
           note.classList.add('emphasize-root-note');
-        } else if (emphasizeNote == note.dataset["simpleNote"]) {
+        } else if (emphasizeNote == note.dataset["note"]) {
           note.classList.add('emphasize-scale');
         };
       });
@@ -112,7 +117,7 @@ const deephasizeNotes = () => {
 const activateStrokeMode = () => {
   notesList.forEach(note => {
     let parentString = note.parentElement;
-    let sameStringNotes = parentString.querySelectorAll('.note');
+    let sameStringNotes = parentString.querySelectorAll('.key');
     note.addEventListener('click', function(){emphasizeActiveNote(note, sameStringNotes)});
   });
 };

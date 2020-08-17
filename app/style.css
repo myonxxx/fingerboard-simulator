@@ -79,12 +79,12 @@ input:checked + .slider:before {
     border-radius: 26px;
 }
 
-
 .fingerboard {
     float: left;
 }
 
-.fingerboard button {
+.key{
+    display: inline-block;
     width: 60px;
     height: 30px;
     font-size: 15px;
@@ -92,22 +92,24 @@ input:checked + .slider:before {
     border: none;
     padding: none;
     margin: 1px;
+    text-align: center;
+    line-height: 30px;
 }
 
-.fingerboard button.open {
+.fingerboard div.open {
     width: 30px;
     background-color: rgb(109, 194, 188);
 }
 
-.fingerboard button.emphasize-scale {
+.fingerboard div.emphasize-scale {
     background-color: rgb(223, 168, 117);
 }
 
-.fingerboard button.emphasize-root-note {
+.fingerboard div.emphasize-root-note {
     background-color: rgb(209, 114, 25);
 }
 
-.fingerboard button.active {
+.fingerboard div.active {
     background-color: rgb(39, 216, 204);
 }
 
@@ -143,8 +145,4 @@ input:checked + .slider:before {
     padding: none;
     background-color: rgb(221, 235, 233);
     margin: 1px;
-}
-
-.flet-number .open {
-    width: 30px;
 }
