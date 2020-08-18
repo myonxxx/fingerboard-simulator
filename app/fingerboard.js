@@ -23,9 +23,9 @@ const makeFingerboard = () => {
   fingerBoard.appendChild(sixthStringElement);
 }
 
-const makeString = (firstOcatave, firstNote) => {
-  let octave = firstOcatave;
-  let stringLength = 12;
+const makeString = (firstOctave, firstNote) => {
+  let octave = firstOctave;
+  let stringLength = 24;
   let scaleLength = 12;
   let stringElement = document.createElement("div");
   let notesnameList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
@@ -34,7 +34,7 @@ const makeString = (firstOcatave, firstNote) => {
   for (let i = 0; i < stringLength; i++) {
     let note = notesnameList[(firstNoteIndex + i) % scaleLength];
     if(note == 'C' && i != 0) {
-      octave = String(Number(firstOcatave) + 1);
+      octave = String(Number(octave) + 1);
     }
     let noteElement = makeNote(octave, note);
     stringElement.appendChild(noteElement);

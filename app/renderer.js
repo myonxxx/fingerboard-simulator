@@ -4,7 +4,7 @@ const Tone = require('tone');
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
 const modeCheckbox = document.querySelector('.mode-checkbox');
-const notesList = document.querySelectorAll('div.key');
+const notesList = document.querySelectorAll('.key');
 const strokeZonesList = document.querySelectorAll('.stroke-zone');
 
 const synth = new Tone.PolySynth().toMaster();
@@ -43,9 +43,11 @@ const playGuitar = (event) => {
   playSound(noteName);
 };
 
-const playGuitarFromStrokeZone = (strokeZone) => {
+const playGuitarFromStrokeZone = (event) => {
+  let strokeZone = event.target;
   let stringName = strokeZone.classList[0];
   let activeNote = document.querySelector(`.${stringName} .active`);
+  console.log(activeNote);
 
   if (activeNote) {
     let dataset = activeNote.dataset
@@ -91,7 +93,7 @@ const emphasizeScale = () => {
            ];
   };
 
-  deephasizeNotes()
+  deephasizeScale()
 
   if (nowKey != 'none') {
     scale.forEach(emphasizeNote => {
@@ -106,23 +108,30 @@ const emphasizeScale = () => {
   };
 }
 
-const deephasizeNotes = () => {
+const deephasizeScale = () => {
   notesList.forEach(note => {
-    note.classList.remove('active');
     note.classList.remove('emphasize-scale');
     note.classList.remove('emphasize-root-note');
   });
 };
 
-const activateStrokeMode = () => {
+const deephasizeNotes = () => {
   notesList.forEach(note => {
-    let parentString = note.parentElement;
-    let sameStringNotes = parentString.querySelectorAll('.key');
-    note.addEventListener('click', function(){emphasizeActiveNote(note, sameStringNotes)});
+    note.classList.remove('active');
   });
 };
 
-const emphasizeActiveNote = (note, sameStringNotes) => {
+const activateStrokeMode = () => {
+  notesList.forEach(note => {
+    note.addEventListener('click', emphasizeActiveNote, false);
+  });
+};
+
+const emphasizeActiveNote = (event) => {
+  let note = event.target;
+  let stringElement = event.target.parentElement;
+  let sameStringNotes = stringElement.querySelectorAll('.key');
+
   if(note.classList.contains('active')) {
     sameStringNotes.forEach(note => {
       note.classList.remove('active');
@@ -137,7 +146,7 @@ const emphasizeActiveNote = (note, sameStringNotes) => {
 
 const activateStrokeZone = () => {
   strokeZonesList.forEach(strokeZone => {
-    strokeZone.addEventListener('mouseenter', function(){playGuitarFromStrokeZone(strokeZone)});
+    strokeZone.addEventListener('mouseenter', playGuitarFromStrokeZone, false);
   });
 };
 

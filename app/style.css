@@ -7,6 +7,8 @@ button:hover {
     background-color: rgb(156, 198, 192);
 }
 
+/* First row */
+
 .key-selector{
     float: left;
     width: 154px;
@@ -79,8 +81,42 @@ input:checked + .slider:before {
     border-radius: 26px;
 }
 
-.fingerboard {
+/* Second row */
+
+#second-row {
+    overflow: auto;
+}
+
+/* Fingerboard */
+
+.fingerboard-rot{
     float: left;
+    width: 744px;
+    height: 199px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    transform: rotateX(180deg);
+}
+
+.fingerboard{
+    transform: rotateX(180deg);
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track{
+    background: rgb(199, 240, 232);
+    border-right: solid 2px #e90101;
+    border-left: solid 2px #e90101;
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgb(48, 163, 172);
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1.5px rgb(195, 250, 241);
 }
 
 .key{
@@ -113,23 +149,27 @@ input:checked + .slider:before {
     background-color: rgb(39, 216, 204);
 }
 
+/* Stroke zone */
 .stroke-zone {
     float: left;
+    position: relative;
+    top: 4.0px;
     font-size: 0px;
 }
 
-.stroke-zone button {
+.stroke-zone div {
+    float: none;
     width: 120px;
     height: 30px;
     font-size: 15px;
     background-color: rgb(207, 243, 237);
     border: none;
-    margin: 1px;
+    margin-left: 1px;
+    margin-bottom: 1.9px;
 }
 
-#stroke-zone-label {
-    width: 120px;
-}
+/* Third row */
+/* Flet number */
 
 .flet-number {
     display: flex;
@@ -146,3 +186,9 @@ input:checked + .slider:before {
     background-color: rgb(221, 235, 233);
     margin: 1px;
 }
+
+#stroke-zone-label {
+    width: 120px;
+}
+
+/* Fourth row */

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <div>
+    <div id="first-row">
         <select class="key-selector">
             <option value="none">Select a Key</option>
             <option value="C">C</option>
@@ -33,30 +33,42 @@
             <span class="slider round"></span>
         </label>
     </div>
-    <div class="fingerboard">
+
+    <div id="second-row">
+        <div class="fingerboard-rot"> 
+            <div class="fingerboard">
+                <!--fingerboard.js-->
+            </div>
+        </div>
+        <div class="stroke-zone">
+            <div class="first stroke-zone"></div>
+            <div class="second stroke-zone"></div>
+            <div class="third stroke-zone"></div>
+            <div class="fourth stroke-zone"></div>
+            <div class="fifth stroke-zone"></div>
+            <div class="sixth stroke-zone"></div>
+        </div>
     </div>
-    <div class="stroke-zone">
-        <div><button class="first stroke-zone"></button></div>
-        <div><button class="second stroke-zone"></button></div>
-        <div><button class="third stroke-zone"></button></div>
-        <div><button class="fourth stroke-zone"></button></div>
-        <div><button class="fifth stroke-zone"></button></div>
-        <div><button class="sixth stroke-zone"></button></div>
+
+    <div id="third-row">
+        <div class='flet-number'>
+            <div>0</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div id=stroke-zone-label>Stroke zone</div>
+        </div>
     </div>
-    <div class='flet-number'>
-    <div>0</div>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
-    <div>10</div>
-    <div>11</div>
-    <div id=stroke-zone-label>Stroke zone</div>
+
+    <div id="fourth-row">
     </div>
 </body>
 
