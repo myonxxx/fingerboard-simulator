@@ -49,14 +49,17 @@ const makeNote = (octave, note) => {
   let notesnameList = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
   let noteIndex = notesnameList.indexOf(note);
   let noteFullname = notesFullnameList[noteIndex];
-
   let keyElement = document.createElement("div");
+  let labelElement = document.createElement("div");
 
-  keyElement.className = "key"
+  keyElement.className = "key";
   keyElement.dataset["octave"] = octave;
   keyElement.dataset["note"] = note;
 
-  keyElement.innerHTML = noteFullname;
+  labelElement.className = "label-div"
+  labelElement.innerHTML = noteFullname;
+
+  keyElement.appendChild(labelElement);
 
   return keyElement;
 };

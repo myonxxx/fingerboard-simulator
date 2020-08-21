@@ -25,7 +25,28 @@ button:hover {
     margin: 1px;
 }
 
+.chord-main-selector{
+    float: left;
+    width: 122px;
+    height: 30px;
+    font-size: 15px;
+    margin: 1px;
+}
+
+.chord-sub-selector{
+    float: left;
+    width: 122px;
+    height: 30px;
+    font-size: 15px;
+    margin: 1px;
+}
+
+
 /* The switch - the box around the slider */
+#stroke-switch {
+    float: left;
+}
+
 .switch {
     position: relative;
     display: inline-block;
@@ -84,6 +105,7 @@ input:checked + .slider:before {
 /* Second row */
 
 #second-row {
+    clear: both;
     overflow: auto;
 }
 
@@ -130,6 +152,7 @@ input:checked + .slider:before {
     margin: 1px;
     text-align: center;
     line-height: 30px;
+    user-select: none;
 }
 
 .fingerboard div.open {
@@ -141,12 +164,34 @@ input:checked + .slider:before {
     background-color: rgb(223, 168, 117);
 }
 
-.fingerboard div.emphasize-root-note {
+.fingerboard div.emphasize-scale-rootnote {
     background-color: rgb(209, 114, 25);
 }
 
-.fingerboard div.active {
-    background-color: rgb(39, 216, 204);
+.fingerboard div.emphasize-chord {
+    background-color: rgb(100, 218, 149);
+}
+
+.fingerboard div.emphasize-chord-rootnote {
+    background-color: rgb(10, 212, 94);
+}
+
+.fingerboard .active-note {
+    pointer-events: none;
+    position: relative;
+    border-radius: 50%;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:30px;
+    height: 30px;
+    background-color: rgb(12, 247, 231);
+}
+
+.fingerboard .label-div {
+    pointer-events: none;
+    position: relative;
+    z-index: 5;
 }
 
 /* Stroke zone */
