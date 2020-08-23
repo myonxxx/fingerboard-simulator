@@ -12,6 +12,7 @@ const synth = new Tone.PolySynth().toMaster();
 
 //Error Check
 const log = require('electron-log');
+const { DuoSynth } = require('tone');
 process.on('uncaughtException', function(err) {
   log.error('electron:event:uncaughtException');
   log.error(err);
@@ -59,7 +60,12 @@ const emphasizeScale = () => {
     scale = makeEmphasizeNoteList(minorScale, nowKey)
   };
 
-  deephasizeScale()
+  try {
+    deephasizeScale('emphasize-scale');
+  } catch (error) {
+    console.log('no emphasize note')
+  }
+
 
   if (nowKey != 'none') {
     emphasizeNotes(scale, 'emphasize-scale')
@@ -79,21 +85,34 @@ const makeEmphasizeNoteList = (numList, startNote) => {
 }
 
 const emphasizeNotes = (emphasizeNotelist, className) => {
+
   emphasizeNotelist.forEach(emphasizeNote => {
     notesList.forEach(note => {
-      if (emphasizeNotelist[0] == note.dataset["note"]) {
-        note.classList.add(className + '-rootnote');
+      let emphasizeElement = document.createElement('div');
+
+      if (emphasizeNotelist[0] == note.dataset["note"] &&
+          emphasizeNotelist[0] == emphasizeNote) {
+        emphasizeElement.classList.add(className + '-rootnote');
+        note.appendChild(emphasizeElement);
+        console.log('a')
       } else if (emphasizeNote == note.dataset["note"]) {
-        note.classList.add(className);
+        emphasizeElement.classList.add(className);
+        note.appendChild(emphasizeElement);
       };
     });
   });
 }
 
-const deephasizeScale = () => {
+const deephasizeScale = (className) => {
   notesList.forEach(note => {
-    note.classList.remove('emphasize-scale');
-    note.classList.remove('emphasize-scale-rootnote');
+    let emphasizeElement = note.querySelector('.' + className);
+    let emphasizeRootElement = note.querySelector('.' + className + '-rootnote')
+    if (emphasizeElement) {
+      note.removeChild(emphasizeElement);
+    };
+    if (emphasizeRootElement) {
+      note.removeChild(emphasizeRootElement);
+    };
   });
 };
 
@@ -111,9 +130,10 @@ const activateStrokeMode = () => {
 
 const deactivateStrokeMode = () => {
   notesList.forEach(note => {
+    let emphasizeElement = note.querySelector('.active-note');
     note.removeEventListener('click', emphasizeActiveNote, false);
-    if (note.classList.contains('active')) {
-      note.removeChild(note.childNodes[1]);
+    if (emphasizeElement) {
+      note.removeChild(emphasizeElement);
     };
   });
 };
@@ -122,28 +142,31 @@ const emphasizeActiveNote = (event) => {
   let activeNote = event.target;
   let stringElement = event.target.parentElement;
   let sameStringNotes = stringElement.querySelectorAll('.key');
-
+  let preemphasizeElement = null;
   let preActiveNote = null;
   sameStringNotes.forEach(note => {
     if (note.classList.contains('active')) {
       preActiveNote = note;
+      preemphasizeElement = preActiveNote.querySelector('.active-note');
     };
   });
 
   let activeNoteElement = document.createElement("div");
   activeNoteElement.className = 'active-note';
 
+  let emphasizeElement = activeNote.querySelector('.active-note');
+
   if(preActiveNote == activeNote) {
-    preActiveNote.classList.remove('active');
-    preActiveNote.removeChild(preActiveNote.childNodes[1])
+    preActiveNote.classList.remove('active');;
+    preActiveNote.removeChild(emphasizeElement);
   } else if (preActiveNote == null) {
     activeNote.classList.add('active');
-    activeNote.appendChild(activeNoteElement)
+    activeNote.appendChild(activeNoteElement);
   } else {
     preActiveNote.classList.remove('active');
-    preActiveNote.removeChild(preActiveNote.childNodes[1])
+    preActiveNote.removeChild(preemphasizeElement);
     activeNote.classList.add('active');
-    activeNote.appendChild(activeNoteElement)
+    activeNote.appendChild(activeNoteElement);
   };
 };
 
@@ -215,8 +238,12 @@ const emphasizeChord = () => {
  
   chordNoteList = makeEmphasizeNoteList(subChord, nowMainChord);
   
-  deemphasizeChord();
-  
+  try {
+    deephasizeScale('emphasize-chord');
+  } catch (error) {
+    console.log('no emphasize note')
+  }
+
   if (nowMainChord != 'none') {
     emphasizeNotes(chordNoteList, 'emphasize-chord');
   };

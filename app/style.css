@@ -143,6 +143,7 @@ input:checked + .slider:before {
 
 .key{
     display: inline-block;
+    position: relative;
     width: 60px;
     height: 30px;
     font-size: 15px;
@@ -155,36 +156,68 @@ input:checked + .slider:before {
     user-select: none;
 }
 
-.fingerboard div.open {
-    width: 30px;
-    background-color: rgb(109, 194, 188);
-}
-
-.fingerboard div.emphasize-scale {
+.fingerboard .emphasize-scale {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:50px;
+    height: 30px;
     background-color: rgb(223, 168, 117);
 }
 
-.fingerboard div.emphasize-scale-rootnote {
+.fingerboard .emphasize-scale-rootnote {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:50px;
+    height: 30px;
     background-color: rgb(209, 114, 25);
 }
 
-.fingerboard div.emphasize-chord {
+.fingerboard .emphasize-chord {
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:30px;
+    height: 30px;
     background-color: rgb(100, 218, 149);
 }
 
-.fingerboard div.emphasize-chord-rootnote {
+.fingerboard .emphasize-chord-rootnote {
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:30px;
+    height: 30px;
     background-color: rgb(10, 212, 94);
 }
 
 .fingerboard .active-note {
     pointer-events: none;
-    position: relative;
+    position: absolute;
+    z-index: 3;
     border-radius: 50%;
-    top: -50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width:30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: rgb(12, 247, 231);
 }
 
