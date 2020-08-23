@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <div>
+    <div id="first-row">
         <select class="key-selector">
             <option value="none">Select a Key</option>
             <option value="C">C</option>
@@ -17,7 +17,7 @@
             <option value="Eb">Eb(D#)</option>
             <option value="E">E</option>
             <option value="F">F</option>
-            <option value="Gb">Gb(FC#)</option>
+            <option value="Gb">Gb(F#)</option>
             <option value="G">G</option>
             <option value="Ab">Ab(G#)</option>
             <option value="A">A</option>
@@ -28,122 +28,94 @@
             <option value="major">major</option>
             <option value="minor">minor</option>
         </select>
-        <label class="switch">
-            <input type="checkbox" class="mode-checkbox">
-            <span class="slider round"></span>
-        </label>
+        <div id ="stroke-switch">
+            <label class="switch">
+                <input type="checkbox" class="mode-checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <select class="chord-main-selector">
+            <option value="none">Select a Chord</option>
+            <option value="C">C</option>
+            <option value="Db">Db(C#)</option>
+            <option value="D">D</option>
+            <option value="Eb">Eb(D#)</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="Gb">Gb(F#)</option>
+            <option value="G">G</option>
+            <option value="Ab">Ab(G#)</option>
+            <option value="A">A</option>
+            <option value="Bb">Bb(A#)</option>
+            <option value="B">B</option>
+        </select>
+        <select class="chord-sub-selector">
+            <option value="major">major</option>
+            <option value="minor">m</option>
+            <option value="seventh">7</option>
+            <option value="minor-seventh">m7</option>
+            <option value="major-seventh">M7</option>
+            <option value="minor-seventh-flat-fifth">m7-5</option>
+            <option value="diminish">dim</option>
+            <option value="sus-four">sus4</option>
+            <option value="seventh-sus-four">7sus4</option>
+            <option value="augment">aug</option>
+            <option value="minor-sixth">m6</option>
+            <option value="seventh-nineth">7(9)</option>
+            <option value="minor-seventh-nineth">m7(9)</option>
+            <option value="seventh-thirteenth">7(13)</option>
+            <option value="add-nineth">add9</option>
+            <option value="sixth">6</option>
+            <option value="minor-major-seventh">mM7</option>
+            <option value="seven-flat-five">7-5</option>
+        </select>
     </div>
-    <div class="fingerboard">
-        <div class="first string">
-            <button data-note="E4"  data-simple-note ="E"  class="open E note">E</button>
-            <button data-note="F4"  data-simple-note ="F"  class="F note">F</button>
-            <button data-note="Gb4" data-simple-note ="Gb" class="Gb note">F#/Gb</button>
-            <button data-note="G4"  data-simple-note ="G" class="G note">G</button>
-            <button data-note="Ab4" data-simple-note ="Ab" class="Ab note">G#/Ab</button>
-            <button data-note="A4"  data-simple-note ="A"  class="A note">A</button>
-            <button data-note="Bb4" data-simple-note ="Bb" class="Bb note">A#/Bb</button>
-            <button data-note="B4"  data-simple-note ="B"  class="B note">B</button>
-            <button data-note="C5"  data-simple-note ="C"  class="C note">C</button>
-            <button data-note="Db5" data-simple-note ="Db" class="Db note">C#/Db</button>
-            <button data-note="D5"  data-simple-note ="D"  class="D note">D</button>
-            <button data-note="Eb5" data-simple-note ="Eb" class="Eb note">D#/Eb</button>
+
+    <div id="second-row">
+        <div class="fingerboard-rot"> 
+            <div class="fingerboard">
+                <!--fingerboard.js-->
+            </div>
         </div>
-        <div class="second string">
-            <button  data-note="B3"  data-simple-note ="B" class="open B note">B</button>
-            <button  data-note="C4"  data-simple-note ="C" class="C note">C</button>
-            <button  data-note="Db4" data-simple-note ="Db" class="Db note">C#/Db</button>
-            <button  data-note="D4"  data-simple-note ="D" class="D note">D</button>
-            <button  data-note="Eb4" data-simple-note ="Eb" class="Eb note">D#/Eb</button>
-            <button  data-note="E4"  data-simple-note ="E" class="E note">E</button>
-            <button  data-note="F4"  data-simple-note ="F" class="F note">F</button>
-            <button  data-note="Gb4" data-simple-note ="Gb" class="Gb note">F#/Gb</button>
-            <button  data-note="G4"  data-simple-note ="G" class="G note">G</button>
-            <button  data-note="Ab4" data-simple-note ="Ab" class="Ab note">G#/Ab</button>
-            <button  data-note="A4"  data-simple-note ="A" class="A note">A</button>
-            <button  data-note="Bb4" data-simple-note ="Bb" class="Bb note">A#/Bb</button>
-        </div>
-        <div class="third string">
-            <button  data-note="G3"  data-simple-note ="G" class="open G note">G</button>
-            <button  data-note="Ab3" data-simple-note ="Ab" class="Ab note">G#/Ab</button>
-            <button  data-note="A3"  data-simple-note ="A" class="A note">A</button>
-            <button  data-note="Bb3" data-simple-note ="Bb" class="Bb note">A#/Bb</button>
-            <button  data-note="B3"  data-simple-note ="B" class="B note">B</button>
-            <button  data-note="C4"  data-simple-note ="C" class="C note">C</button>
-            <button  data-note="Db4" data-simple-note ="Db" class="Db note">C#/Db</button>
-            <button  data-note="D4"  data-simple-note ="D" class="D note">D</button>
-            <button  data-note="Eb4" data-simple-note ="Eb" class="Eb note">D#/Eb</button>
-            <button  data-note="E4"  data-simple-note ="E" class="E note">E</button>
-            <button  data-note="F4"  data-simple-note ="F" class="F note">F</button>
-            <button  data-note="Gb4" data-simple-note ="Gb" class="Gb note">F#/Gb</button>
-        </div>
-        <div class="fourth string">
-            <button  data-note="D3"  data-simple-note ="D" class="open D note">D</button>
-            <button  data-note="Eb3" data-simple-note ="Eb" class="Eb note">D#/Eb</button>
-            <button  data-note="E3"  data-simple-note ="E" class="E note">E</button>
-            <button  data-note="F3"  data-simple-note ="F" class="F note">F</button>
-            <button  data-note="Gb3" data-simple-note ="Gb" class="Gb note">F#/Gb</button>
-            <button  data-note="G3"  data-simple-note ="G" class="G note">G</button>
-            <button  data-note="Ab3" data-simple-note ="Ab" class="Ab note">G#/Ab</button>
-            <button  data-note="A3"  data-simple-note ="A" class="A note">A</button>
-            <button  data-note="Bb3" data-simple-note ="Bb" class="Bb note">A#/Bb</button>
-            <button  data-note="B3"  data-simple-note ="B" class="B note">B</button>
-            <button  data-note="C4"  data-simple-note ="C" class="C note">C</button>
-            <button  data-note="Db4" data-simple-note ="Db" class="Db note">C#/Db</button>
-        </div>
-        <div class="fifth string">
-            <button  data-note="A2"  data-simple-note ="A" class="open A note">A</button>
-            <button  data-note="Bb2" data-simple-note ="Bb" class="Bb note">A#/Bb</button>
-            <button  data-note="B2"  data-simple-note ="B" class="B note">B</button>
-            <button  data-note="C3"  data-simple-note ="C" class="C note">C</button>
-            <button  data-note="Db3" data-simple-note ="Db" class="Db note">C#/Db</button>
-            <button  data-note="D3"  data-simple-note ="D" class="D note">D</button>
-            <button  data-note="Eb3" data-simple-note ="Eb" class="Eb note">D#/Eb</button>
-            <button  data-note="E3"  data-simple-note ="E" class="E note">E</button>
-            <button  data-note="F3"  data-simple-note ="F" class="F note">F</button>
-            <button  data-note="Gb3" data-simple-note ="Gb" class="Gb note">F#/Gb</button>
-            <button  data-note="G3"  data-simple-note ="G" class="G note">G</button>
-            <button  data-note="Ab3" data-simple-note ="Ab" class="Ab note">G#/Ab</button>
-        </div>
-        <div class="sixth string">
-            <button  data-note="E2"  data-simple-note ="E" class="open E note">E</button>
-            <button  data-note="F2"  data-simple-note ="F" class="F note">F</button>
-            <button  data-note="Gb2" data-simple-note ="Gb" class="Gb note">F#/Gb</button>
-            <button  data-note="G2"  data-simple-note ="G" class="G note">G</button>
-            <button  data-note="Ab2" data-simple-note ="Ab" class="Ab note">G#/Ab</button>
-            <button  data-note="A2"  data-simple-note ="A" class="A note">A</button>
-            <button  data-note="Bb2" data-simple-note ="Bb" class="Bb note">A#/Bb</button>
-            <button  data-note="B2"  data-simple-note ="B" class="B note">B</button>
-            <button  data-note="C3"  data-simple-note ="C" class="C note">C</button>
-            <button  data-note="Db3" data-simple-note ="Db" class="Db note">C#/Db</button>
-            <button  data-note="D3"  data-simple-note ="D" class="D note">D</button>
-            <button  data-note="Eb3" data-simple-note ="Eb" class="Eb note">D#/Eb</button>
+        <div class="stroke-zone">
+            <div class="first stroke-zone"></div>
+            <div class="second stroke-zone"></div>
+            <div class="third stroke-zone"></div>
+            <div class="fourth stroke-zone"></div>
+            <div class="fifth stroke-zone"></div>
+            <div class="sixth stroke-zone"></div>
         </div>
     </div>
-    <div class="stroke-zone">
-        <div><button class="first stroke-zone"></button></div>
-        <div><button class="second stroke-zone"></button></div>
-        <div><button class="third stroke-zone"></button></div>
-        <div><button class="fourth stroke-zone"></button></div>
-        <div><button class="fifth stroke-zone"></button></div>
-        <div><button class="sixth stroke-zone"></button></div>
+
+    <div id="third-row">
+        <div class='flet-number'>
+            <div>0</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div id=stroke-zone-label>Stroke zone</div>
+        </div>
     </div>
-    <div class='flet-number'>
-    <div class='open'>0</div>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
-    <div>10</div>
-    <div>11</div>
-    <div id=stroke-zone-label>Stroke zone</div>
+
+    <div id="fourth-row">
     </div>
 </body>
+
+<!--
+<script src="fingerboard.js"></script>
+<script src="renderer.js"></script>
+-->
+
 <script>
+    require('./fingerboard');
     require('./renderer');
 </script>
 </html>

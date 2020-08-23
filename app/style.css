@@ -7,6 +7,8 @@ button:hover {
     background-color: rgb(156, 198, 192);
 }
 
+/* First row */
+
 .key-selector{
     float: left;
     width: 154px;
@@ -23,7 +25,28 @@ button:hover {
     margin: 1px;
 }
 
+.chord-main-selector{
+    float: left;
+    width: 122px;
+    height: 30px;
+    font-size: 15px;
+    margin: 1px;
+}
+
+.chord-sub-selector{
+    float: left;
+    width: 122px;
+    height: 30px;
+    font-size: 15px;
+    margin: 1px;
+}
+
+
 /* The switch - the box around the slider */
+#stroke-switch {
+    float: left;
+}
+
 .switch {
     position: relative;
     display: inline-block;
@@ -79,12 +102,47 @@ input:checked + .slider:before {
     border-radius: 26px;
 }
 
+/* Second row */
 
-.fingerboard {
-    float: left;
+#second-row {
+    clear: both;
+    overflow: auto;
 }
 
-.fingerboard button {
+/* Fingerboard */
+
+.fingerboard-rot{
+    float: left;
+    width: 744px;
+    height: 199px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    transform: rotateX(180deg);
+}
+
+.fingerboard{
+    transform: rotateX(180deg);
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track{
+    background: rgb(199, 240, 232);
+    border-right: solid 2px #e90101;
+    border-left: solid 2px #e90101;
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgb(48, 163, 172);
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1.5px rgb(195, 250, 241);
+}
+
+.key{
+    display: inline-block;
     width: 60px;
     height: 30px;
     font-size: 15px;
@@ -92,42 +150,71 @@ input:checked + .slider:before {
     border: none;
     padding: none;
     margin: 1px;
+    text-align: center;
+    line-height: 30px;
+    user-select: none;
 }
 
-.fingerboard button.open {
+.fingerboard div.open {
     width: 30px;
     background-color: rgb(109, 194, 188);
 }
 
-.fingerboard button.emphasize-scale {
+.fingerboard div.emphasize-scale {
     background-color: rgb(223, 168, 117);
 }
 
-.fingerboard button.emphasize-root-note {
+.fingerboard div.emphasize-scale-rootnote {
     background-color: rgb(209, 114, 25);
 }
 
-.fingerboard button.active {
-    background-color: rgb(39, 216, 204);
+.fingerboard div.emphasize-chord {
+    background-color: rgb(100, 218, 149);
 }
 
+.fingerboard div.emphasize-chord-rootnote {
+    background-color: rgb(10, 212, 94);
+}
+
+.fingerboard .active-note {
+    pointer-events: none;
+    position: relative;
+    border-radius: 50%;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:30px;
+    height: 30px;
+    background-color: rgb(12, 247, 231);
+}
+
+.fingerboard .label-div {
+    pointer-events: none;
+    position: relative;
+    z-index: 5;
+}
+
+/* Stroke zone */
 .stroke-zone {
     float: left;
+    position: relative;
+    top: 4.0px;
     font-size: 0px;
 }
 
-.stroke-zone button {
+.stroke-zone div {
+    float: none;
     width: 120px;
     height: 30px;
     font-size: 15px;
     background-color: rgb(207, 243, 237);
     border: none;
-    margin: 1px;
+    margin-left: 1px;
+    margin-bottom: 1.9px;
 }
 
-#stroke-zone-label {
-    width: 120px;
-}
+/* Third row */
+/* Flet number */
 
 .flet-number {
     display: flex;
@@ -145,6 +232,8 @@ input:checked + .slider:before {
     margin: 1px;
 }
 
-.flet-number .open {
-    width: 30px;
+#stroke-zone-label {
+    width: 120px;
 }
+
+/* Fourth row */
