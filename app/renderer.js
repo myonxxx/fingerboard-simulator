@@ -1,4 +1,3 @@
-const { shell } = require('electron');
 const Tone = require('tone');
 
 const keySelector = document.querySelector('.key-selector');
@@ -32,7 +31,6 @@ const playGuitarFromStrokeZone = (event) => {
   let strokeZone = event.target;
   let stringName = strokeZone.classList[0];
   let activeNote = document.querySelector(`.${stringName} .active`);
-  console.log(activeNote);
 
   if (activeNote) {
     let dataset = activeNote.dataset

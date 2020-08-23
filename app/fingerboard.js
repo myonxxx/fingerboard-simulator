@@ -11,7 +11,7 @@ const makeFingerboard = () => {
   firstStringElement.className = "first string"
   secondStringElement.className = "second string"
   thirdStringElement.className = "third string"
-  fourthStringElement.className = "fouth string"
+  fourthStringElement.className = "fourth string"
   fifthStringElement.className = "fifth string"
   sixthStringElement.className = "sixth string"
 
