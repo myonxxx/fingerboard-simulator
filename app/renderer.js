@@ -1,4 +1,9 @@
-const Tone = require('tone');
+try {
+  const Tone = require('tone');
+} catch (error) {
+  
+}
+
 
 const keySelector = document.querySelector('.key-selector');
 const scaleSelector = document.querySelector('.scale-selector');
@@ -11,14 +16,7 @@ const strokeZonesList = document.querySelectorAll('.stroke-zone');
 const synth = new Tone.PolySynth().toMaster();
 
 //Error Check
-const log = require('electron-log');
-const { DuoSynth } = require('tone');
-process.on('uncaughtException', function(err) {
-  log.error('electron:event:uncaughtException');
-  log.error(err);
-  log.error(err.stack);
-  app.quit();
-});
+
 
 const playGuitar = (event) => {
   let dataset = event.target.dataset;
@@ -94,7 +92,6 @@ const emphasizeNotes = (emphasizeNotelist, className) => {
           emphasizeNotelist[0] == emphasizeNote) {
         emphasizeElement.classList.add(className + '-rootnote');
         note.appendChild(emphasizeElement);
-        console.log('a')
       } else if (emphasizeNote == note.dataset["note"]) {
         emphasizeElement.classList.add(className);
         note.appendChild(emphasizeElement);
@@ -233,8 +230,6 @@ const emphasizeChord = () => {
       subChord = chord[1];
     };
   });
-
-  console.log(subChord);
  
   chordNoteList = makeEmphasizeNoteList(subChord, nowMainChord);
   
@@ -247,13 +242,6 @@ const emphasizeChord = () => {
   if (nowMainChord != 'none') {
     emphasizeNotes(chordNoteList, 'emphasize-chord');
   };
-}
-
-const deemphasizeChord = () => {
-  notesList.forEach(note => {
-    note.classList.remove('emphasize-chord');
-    note.classList.remove('emphasize-chord-rootnote');
-  })
 }
 
 keySelector.addEventListener('change', emphasizeScale, false);
