@@ -8,105 +8,129 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <div id="first-row">
-        <select class="key-selector">
-            <option value="none">Select a Key</option>
-            <option value="C">C</option>
-            <option value="Db">Db(C#)</option>
-            <option value="D">D</option>
-            <option value="Eb">Eb(D#)</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Gb">Gb(F#)</option>
-            <option value="G">G</option>
-            <option value="Ab">Ab(G#)</option>
-            <option value="A">A</option>
-            <option value="Bb">Bb(A#)</option>
-            <option value="B">B</option>
-        </select>
-        <select class="scale-selector">
-            <option value="major">major</option>
-            <option value="minor">minor</option>
-        </select>
-        <div id ="stroke-switch">
-            <label class="switch">
-                <input type="checkbox" class="mode-checkbox">
-                <span class="slider round"></span>
-            </label>
+<div id="fingerboard-simulator">
+    <div id="control-box">
+        <div>
+            <div class="first-col">Highlight key</div>
+            <div class="second-col">
+                <select class="key-selector">
+                    <option value="none">Select a Key</option>
+                    <option value="C">C</option>
+                    <option value="Db">Db(C#)</option>
+                    <option value="D">D</option>
+                    <option value="Eb">Eb(D#)</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="Gb">Gb(F#)</option>
+                    <option value="G">G</option>
+                    <option value="Ab">Ab(G#)</option>
+                    <option value="A">A</option>
+                    <option value="Bb">Bb(A#)</option>
+                    <option value="B">B</option>
+                </select>
+                <select class="scale-selector">
+                    <option value="major">major</option>
+                    <option value="minor">minor</option>
+                </select>
+            </div>
         </div>
-        <select class="chord-main-selector">
-            <option value="none">Select a Chord</option>
-            <option value="C">C</option>
-            <option value="Db">Db(C#)</option>
-            <option value="D">D</option>
-            <option value="Eb">Eb(D#)</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Gb">Gb(F#)</option>
-            <option value="G">G</option>
-            <option value="Ab">Ab(G#)</option>
-            <option value="A">A</option>
-            <option value="Bb">Bb(A#)</option>
-            <option value="B">B</option>
-        </select>
-        <select class="chord-sub-selector">
-            <option value="major">major</option>
-            <option value="minor">m</option>
-            <option value="seventh">7</option>
-            <option value="minor-seventh">m7</option>
-            <option value="major-seventh">M7</option>
-            <option value="minor-seventh-flat-fifth">m7-5</option>
-            <option value="diminish">dim</option>
-            <option value="sus-four">sus4</option>
-            <option value="seventh-sus-four">7sus4</option>
-            <option value="augment">aug</option>
-            <option value="minor-sixth">m6</option>
-            <option value="seventh-nineth">7(9)</option>
-            <option value="minor-seventh-nineth">m7(9)</option>
-            <option value="seventh-thirteenth">7(13)</option>
-            <option value="add-nineth">add9</option>
-            <option value="sixth">6</option>
-            <option value="minor-major-seventh">mM7</option>
-            <option value="seven-flat-five">7-5</option>
-        </select>
-    </div>
+        <div>
+            <div class="first-col">Highlight chord</div>
+            <div class="second-col">
+                <select class="chord-main-selector">
+                    <option value="none">Select a Chord</option>
+                    <option value="C">C</option>
+                    <option value="Db">Db(C#)</option>
+                    <option value="D">D</option>
+                    <option value="Eb">Eb(D#)</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="Gb">Gb(F#)</option>
+                    <option value="G">G</option>
+                    <option value="Ab">Ab(G#)</option>
+                    <option value="A">A</option>
+                    <option value="Bb">Bb(A#)</option>
+                    <option value="B">B</option>
+                </select>
+                <select class="chord-sub-selector">
+                    <option value="major">major</option>
+                    <option value="minor">m</option>
+                    <option value="seventh">7</option>
+                    <option value="minor-seventh">m7</option>
+                    <option value="major-seventh">M7</option>
+                    <option value="minor-seventh-flat-fifth">m7-5</option>
+                    <option value="diminish">dim</option>
+                    <option value="sus-four">sus4</option>
+                    <option value="seventh-sus-four">7sus4</option>
+                    <option value="augment">aug</option>
+                    <option value="minor-sixth">m6</option>
+                    <option value="seventh-nineth">7(9)</option>
+                    <option value="minor-seventh-nineth">m7(9)</option>
+                    <option value="seventh-thirteenth">7(13)</option>
+                    <option value="add-nineth">add9</option>
+                    <option value="sixth">6</option>
+                    <option value="minor-major-seventh">mM7</option>
+                    <option value="seven-flat-five">7-5</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <div id ="stroke-switch">
+                <div class="first-col">Activate stroke-mode</div>
+                <div class="second-col">
+                    <label class="switch">
+                        <input type="checkbox" class="mode-checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
     <div id="second-row">
         <div class="fingerboard-rot"> 
-            <div class="fingerboard">
-                <!--fingerboard.js-->
+            <div class="fingerboard-rot-fix">
+                <div class="fingerboard">
+                    <!--fingerboard.js-->
+                </div>
+                <div class='flet-number'>
+                    <div>0</div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+                    <div>9</div>
+                    <div>10</div>
+                    <div>11</div>
+                    <div>12</div>
+                    <div>13</div>
+                    <div>14</div>
+                    <div>15</div>
+                    <div>16</div>
+                    <div>17</div>
+                    <div>18</div>
+                    <div>19</div>
+                    <div>20</div>
+                    <div>21</div>
+                    <div>22</div>
+                    <div>23</div>
+                </div>
             </div>
         </div>
-        <div class="stroke-zone">
+        <div class="stroke">
             <div class="first stroke-zone"></div>
             <div class="second stroke-zone"></div>
             <div class="third stroke-zone"></div>
             <div class="fourth stroke-zone"></div>
             <div class="fifth stroke-zone"></div>
             <div class="sixth stroke-zone"></div>
-        </div>
-    </div>
-
-    <div id="third-row">
-        <div class='flet-number'>
-            <div>0</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div>7</div>
-            <div>8</div>
-            <div>9</div>
-            <div>10</div>
-            <div>11</div>
             <div id=stroke-zone-label>Stroke zone</div>
         </div>
     </div>
-
-    <div id="fourth-row">
-    </div>
+</div>
 </body>
 
 
@@ -120,4 +144,5 @@
     require('./renderer');
 </script>
 -->
+
 </html>

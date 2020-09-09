@@ -7,10 +7,29 @@ button:hover {
     background-color: rgb(156, 198, 192);
 }
 
+#fingerboard-simulator {
+    position: relative;
+    top: 100px;
+    left: 1%;
+}
+
+.first-col {
+    display: inline-block;
+    font-size: 15px;
+    width: 150px;
+    line-height: 30px;
+}
+
+.second-col {
+    display: inline-block;
+    font-size: 15px;
+    width: 300px;
+    line-height: 30px;
+}
+
 /* First row */
 
 .key-selector{
-    float: left;
     width: 154px;
     height: 30px;
     font-size: 15px;
@@ -18,7 +37,6 @@ button:hover {
 }
 
 .scale-selector{
-    float: left;
     width: 122px;
     height: 30px;
     font-size: 15px;
@@ -26,15 +44,13 @@ button:hover {
 }
 
 .chord-main-selector{
-    float: left;
-    width: 122px;
+    width: 154px;
     height: 30px;
     font-size: 15px;
     margin: 1px;
 }
 
 .chord-sub-selector{
-    float: left;
     width: 122px;
     height: 30px;
     font-size: 15px;
@@ -43,9 +59,6 @@ button:hover {
 
 
 /* The switch - the box around the slider */
-#stroke-switch {
-    float: left;
-}
 
 .switch {
     position: relative;
@@ -114,13 +127,14 @@ input:checked + .slider:before {
 .fingerboard-rot{
     float: left;
     width: 744px;
-    height: 199px;
+    height: 232px;
     white-space: nowrap;
     overflow-x: scroll;
+    
     transform: rotateX(180deg);
 }
 
-.fingerboard{
+.fingerboard-rot-fix{
     transform: rotateX(180deg);
 }
 
@@ -228,33 +242,32 @@ input:checked + .slider:before {
 }
 
 /* Stroke zone */
-.stroke-zone {
+.stroke {
     float: left;
     position: relative;
-    top: 4.0px;
+    top: 7.0px;
     font-size: 0px;
 }
 
-.stroke-zone div {
+.stroke div {
     float: none;
     width: 120px;
     height: 30px;
     font-size: 15px;
     background-color: rgb(207, 243, 237);
     border: none;
-    margin-left: 1px;
-    margin-bottom: 1.9px;
+    margin: 2px;
 }
 
 /* Third row */
 /* Flet number */
 
 .flet-number {
-    display: flex;
     clear: both;
 }
 
 .flet-number div {
+    display: inline-block;
     width: 60px;
     height: 30px;
     line-height: 30px;
@@ -266,7 +279,11 @@ input:checked + .slider:before {
 }
 
 #stroke-zone-label {
+    position: relative;
+    top:0px;
     width: 120px;
+    text-align: center;
+    line-height: 30px;
 }
 
 /* Fourth row */
